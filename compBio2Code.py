@@ -1,4 +1,5 @@
 import random
+import matplotlib.pyplot as plt
 
 # Function to read preferences from file
 def read_preferences(file_path):
@@ -128,6 +129,20 @@ def genetic_algorithm(male_prefs, female_prefs, pop_size=100, generations=100):
     # Return the best and worst solutions and their fitness values
     return best_solution, best_fitness, worst_solution, worst_fitness, average_fitness, best_fitness_list, worst_fitness_list, average_fitness_list
 
+# Function to plot the fitness values over generations
+def plot_fitness(best_fitness_list, worst_fitness_list, average_fitness_list, pop_size, generations, avg_satisfaction):
+    generations_range = range(len(best_fitness_list))
+    plt.figure(figsize=(10, 6))  # Make the plot larger
+    plt.plot(generations_range, best_fitness_list, label='Best Fitness')
+    plt.plot(generations_range, worst_fitness_list, label='Worst Fitness')
+    plt.plot(generations_range, average_fitness_list, label='Average Fitness')
+    plt.xlabel('Generations')
+    plt.ylabel('Fitness (%)')
+    plt.legend()
+    plt.title(f'Fitness over Generations\n(pop_size={pop_size}, generations={generations})\nAverage satisfaction for the best Solution: {avg_satisfaction:.2f}')
+    plt.tight_layout()
+    plt.show()
+
 def main():
     # Read the preferences from the file
     male_prefs, female_prefs = read_preferences('.\GA_input.txt')
@@ -145,6 +160,7 @@ def main():
     print("Worst Fitness:", worst_fitness, "%")
     print("Average Fitness:", average_fitness, "%")
 
-    input("Press Enter to exit...")  # Pause the program to prevent immediate closure
+    plot_fitness(best_fitness_list, worst_fitness_list, average_fitness_list, pop_size, generations, avg_satisfaction_best)
+    # input("Press Enter to exit...")  # Pause the program to prevent immediate closure
 if __name__ == "__main__":
     main()
