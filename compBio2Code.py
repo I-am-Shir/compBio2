@@ -161,6 +161,6 @@ def main():
     print("Average Fitness:", average_fitness, "%")
 
     plot_fitness(best_fitness_list, worst_fitness_list, average_fitness_list, pop_size, generations, avg_satisfaction_best)
-    # input("Press Enter to exit...")  # Pause the program to prevent immediate closure
+    # Input("Press Enter to exit...")  # Pause the program to prevent immediate closure
 if __name__ == "__main__":
     main()
